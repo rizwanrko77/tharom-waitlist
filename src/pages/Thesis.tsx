@@ -23,7 +23,7 @@ export default function Thesis() {
           Empowering Businesses in the AI Era
         </h1>
 
-        <div className="glass-panel" style={{ padding: '3rem', fontSize: '1.1rem', lineHeight: 1.8, color: 'var(--text-secondary)' }}>
+        <div style={{ fontSize: '1.1rem', lineHeight: 1.8, color: 'var(--text-secondary)' }}>
           <p style={{ marginBottom: '1.5rem', color: 'var(--text-primary)', fontSize: '1.2rem', fontWeight: 500 }}>
             Entering the AI Era
           </p>

@@ -154,7 +154,7 @@ a:hover {
 .container {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 0 2rem;
+  padding: 0 clamp(1rem, 5vw, 2rem);
 }
 
 /* Background Effects */

@@ -1,7 +1,5 @@
 
 import { motion } from 'framer-motion';
-import { Link } from 'react-router-dom';
-import { ArrowRight } from 'lucide-react';
 import WaitlistForm from '../components/WaitlistForm';
 
 export default function Landing() {
@@ -29,17 +27,6 @@ export default function Landing() {
           transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
         >
           <WaitlistForm />
-
-          <div style={{ marginTop: '3rem' }}>
-            <Link 
-              to="/thesis" 
-              style={{ color: 'white', textDecoration: 'none', fontSize: '1rem', opacity: 0.8, transition: 'all 0.2s', display: 'inline-flex', alignItems: 'center', gap: '0.5rem' }} 
-              onMouseEnter={(e) => { e.currentTarget.style.opacity = '1'; e.currentTarget.style.textDecoration = 'underline'; }} 
-              onMouseLeave={(e) => { e.currentTarget.style.opacity = '0.8'; e.currentTarget.style.textDecoration = 'none'; }}
-            >
-              Thesis <ArrowRight size={16} />
-            </Link>
-          </div>
         </motion.div>
       </div>
     </div>
