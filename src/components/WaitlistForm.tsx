@@ -59,7 +59,7 @@ export default function WaitlistForm() {
             onSubmit={handleSubmit}
             style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}
           >
-            <h3 className="text-mono" style={{ marginBottom: '0.5rem', textAlign: 'center' }}>Early Access Rollout Starts Soon</h3>
+            <h3 className="text-mono" style={{ marginBottom: '0.5rem', textAlign: 'center' }}>Early Access Rolls Out Soon</h3>
 
             <input
               type="text"

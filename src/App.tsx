@@ -2,11 +2,13 @@
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import Landing from './pages/Landing';
 import Thesis from './pages/Thesis'; // trigger ts refresh
+import ScrollToTop from './components/ScrollToTop';
 
 
 function App() {
   return (
     <Router>
+      <ScrollToTop />
       <div className="bg-glow"></div>
       <header style={{ padding: '2rem 0', position: 'sticky', top: 0, zIndex: 100, background: 'rgba(5, 5, 5, 0.8)', backdropFilter: 'blur(10px)' }}>
         <div className="container" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>

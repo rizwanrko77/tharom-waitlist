@@ -131,6 +131,25 @@ a:hover {
   background-clip: text;
 }
 
+@keyframes gradientShiftMulti {
+  0% { background-position: 0% 50%; }
+  25% { background-position: 100% 100%; }
+  50% { background-position: 50% 0%; }
+  75% { background-position: 0% 100%; }
+  100% { background-position: 0% 50%; }
+}
+
+.animate-text-shades {
+  background: linear-gradient(-45deg, #38bdf8, #ffffff, #3b82f6, #a855f7, #38bdf8);
+  background-size: 400% 400%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: gradientShiftMulti 16s ease-in-out infinite;
+  padding-left: 0.1em;
+  margin-left: -0.1em;
+}
+
 /* Layout */
 .container {
   max-width: 1200px;

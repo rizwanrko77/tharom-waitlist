@@ -14,12 +14,11 @@ export default function Landing() {
           transition={{ duration: 0.8, ease: "easeOut" }}
         >
           <h1 className="gradient-text" style={{ fontSize: 'clamp(3rem, 8vw, 5rem)', lineHeight: 1.1, marginBottom: '1.5rem', fontFamily: 'var(--font-sans)', fontWeight: 400 }}>
-            The <span style={{ fontSize: 'clamp(3rem, 8vw, 5rem)', lineHeight: 1.1, marginBottom: '1rem', fontFamily: 'var(--font-sans)', fontWeight: 300 }}> </span>
-            <span className="text-mono" style={{ fontStyle: 'italic', fontWeight: 700 }}>   Ai-Era</span> <br />
-            <span style={{ fontSize: 'clamp(2rem, 4vw, 2rem)', lineHeight: 0.7, marginBottom: '1.5rem', fontFamily: 'var(--font-sans)', fontWeight: 600 }}> has already begun</span>
+            The <span className="text-mono animate-text-shades" style={{ fontStyle: 'italic', fontWeight: 700 }}>Ai-Era</span>
+            <span style={{ display: 'block', fontSize: 'clamp(2.75rem, 5vw, 3rem)', marginTop: '-0.1rem', fontFamily: 'var(--font-sans)', fontWeight: 600 }}>has already begun</span>
           </h1>
 
-          <p style={{ color: 'var(--text-secondary)', fontSize: '1.1rem', maxWidth: '600px', margin: '0 auto 3rem', lineHeight: 1.8 }}>
+          <p style={{ color: 'var(--text-secondary)', fontSize: '1.1rem', maxWidth: '600px', margin: '0 auto 1.5rem', lineHeight: 1.8 }}>
             Integrate AI into your knowledge base and let "YOUR" AI serve your business.
           </p>
         </motion.div>

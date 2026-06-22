@@ -1,5 +1,7 @@
 
 import { motion } from 'framer-motion';
+import { Link } from 'react-router-dom';
+import { ChevronRight } from 'lucide-react';
 
 export default function Thesis() {
   return (
@@ -9,10 +11,13 @@ export default function Thesis() {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8 }}
       >
-        <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', marginBottom: '2rem' }}>
-          <div style={{ width: '40px', height: '1px', background: 'var(--accent-color)' }}></div>
-          <span className="text-mono text-accent" style={{ fontSize: '0.9rem', letterSpacing: '0.1em' }}>OUR THESIS</span>
-        </div>
+        <nav style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '2rem', fontFamily: 'var(--font-mono)', fontSize: '0.9rem' }}>
+          <Link to="/" style={{ color: 'var(--text-secondary)', textDecoration: 'none', transition: 'color 0.2s' }} onMouseEnter={(e) => e.currentTarget.style.color = 'var(--text-primary)'} onMouseLeave={(e) => e.currentTarget.style.color = 'var(--text-secondary)'}>
+            Home
+          </Link>
+          <ChevronRight size={14} style={{ color: 'var(--text-secondary)' }} />
+          <span className="text-accent" style={{ letterSpacing: '0.05em' }}>Thesis</span>
+        </nav>
 
         <h1 className="text-mono" style={{ fontSize: 'clamp(2rem, 5vw, 3.5rem)', marginBottom: '3rem', lineHeight: 1.2 }}>
           Empowering Businesses in the AI Era
