@@ -58,21 +58,22 @@ export const onRequestPost = async (context: any) => {
     // 2. Send confirmation to User
     const confirmCommand = new SendEmailCommand({
       Source: fromEmail,
+      ReplyToAddresses: ["hello@xapproach.com"],
       Destination: {
         ToAddresses: [email],
       },
       Message: {
         Subject: { Data: "Welcome to the Xapproach Waitlist!" },
         Body: {
-          Text: { Data: `Hi ${name},\n\nThanks for joining the Xapproach waitlist — you're in.\n\nWe're building Xapproach as AI as a Service: train your own AI on your content, brand it as yours, and put it to work for your business — whether you're running a school, a clinic, a consultancy, or a startup.\n\nWe'll reach out personally as we get closer to launch, with early access ahead of everyone else.\n\nTalk soon,\nThe Xapproach Team` },
+          Text: { Data: `Hi ${name},\n\nThanks for joining the Xapproach waitlist. I'm Rizwan, building Xapproach as AI-as-a-Service, where you can train, brand, and monetize your own AI. Works for schools, clinics, consultants, startups, and a lot more use cases beyond that.\n\nEarly access is going out in batches. I'll personally make sure you get in as soon as possible.\n\nThis email went out automatically, but I read every reply myself. Write back if you want, I'll see it.\n\nRizwan\nTeam, Xapproach` },
           Html: { Data: `
             <div style="font-family: sans-serif; color: #333; max-width: 600px; margin: 0 auto;">
               <p>Hi ${name},</p>
-              <p>Thanks for joining the Xapproach waitlist — you're in.</p>
-              <p>We're building Xapproach as AI as a Service: train your own AI on your content, brand it as yours, and put it to work for your business — whether you're running a school, a clinic, a consultancy, or a startup.</p>
-              <p>We'll reach out personally as we get closer to launch, with early access ahead of everyone else.</p>
+              <p>Thanks for joining the Xapproach waitlist. I'm Rizwan, building Xapproach as AI-as-a-Service, where you can train, brand, and monetize your own AI. Works for schools, clinics, consultants, startups, and a lot more use cases beyond that.</p>
+              <p>Early access is going out in batches. I'll personally make sure you get in as soon as possible.</p>
+              <p>This email went out automatically, but I read every reply myself. Write back if you want, I'll see it.</p>
               <br/>
-              <p>Talk soon,<br/>The Xapproach Team</p>
+              <p>Rizwan<br/>Team, Xapproach</p>
             </div>
           ` }
         },

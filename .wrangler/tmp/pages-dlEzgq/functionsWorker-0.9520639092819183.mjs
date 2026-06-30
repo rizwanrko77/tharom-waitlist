@@ -17116,6 +17116,7 @@ Email: ${email}` }
         });
         const confirmCommand = new SendEmailCommand({
           Source: fromEmail,
+          ReplyToAddresses: ["hello@xapproach.com"],
           Destination: {
             ToAddresses: [email]
           },
@@ -17124,22 +17125,22 @@ Email: ${email}` }
             Body: {
               Text: { Data: `Hi ${name},
 
-Thanks for joining the Xapproach waitlist \u2014 you're in.
+Thanks for joining the Xapproach waitlist. I'm Rizwan, building Xapproach as AI-as-a-Service, where you can train, brand, and monetize your own AI. Works for schools, clinics, consultants, startups, and a lot more use cases beyond that.
 
-We're building Xapproach as AI as a Service: train your own AI on your content, brand it as yours, and put it to work for your business \u2014 whether you're running a school, a clinic, a consultancy, or a startup.
+Early access is going out in batches. I'll personally make sure you get in as soon as possible.
 
-We'll reach out personally as we get closer to launch, with early access ahead of everyone else.
+This email went out automatically, but I read every reply myself. Write back if you want, I'll see it.
 
-Talk soon,
-The Xapproach Team` },
+Rizwan
+Team, Xapproach` },
               Html: { Data: `
             <div style="font-family: sans-serif; color: #333; max-width: 600px; margin: 0 auto;">
               <p>Hi ${name},</p>
-              <p>Thanks for joining the Xapproach waitlist \u2014 you're in.</p>
-              <p>We're building Xapproach as AI as a Service: train your own AI on your content, brand it as yours, and put it to work for your business \u2014 whether you're running a school, a clinic, a consultancy, or a startup.</p>
-              <p>We'll reach out personally as we get closer to launch, with early access ahead of everyone else.</p>
+              <p>Thanks for joining the Xapproach waitlist. I'm Rizwan, building Xapproach as AI-as-a-Service, where you can train, brand, and monetize your own AI. Works for schools, clinics, consultants, startups, and a lot more use cases beyond that.</p>
+              <p>Early access is going out in batches. I'll personally make sure you get in as soon as possible.</p>
+              <p>This email went out automatically, but I read every reply myself. Write back if you want, I'll see it.</p>
               <br/>
-              <p>Talk soon,<br/>The Xapproach Team</p>
+              <p>Rizwan<br/>Team, Xapproach</p>
             </div>
           ` }
             }
@@ -17187,10 +17188,10 @@ var init_functionsRoutes_0_9440137819328775 = __esm({
   }
 });
 
-// ../.wrangler/tmp/bundle-lkLDfW/middleware-loader.entry.ts
+// ../.wrangler/tmp/bundle-wleJsc/middleware-loader.entry.ts
 init_functionsRoutes_0_9440137819328775();
 
-// ../.wrangler/tmp/bundle-lkLDfW/middleware-insertion-facade.js
+// ../.wrangler/tmp/bundle-wleJsc/middleware-insertion-facade.js
 init_functionsRoutes_0_9440137819328775();
 
 // ../node_modules/wrangler/templates/pages-template-worker.ts
@@ -17686,7 +17687,7 @@ var jsonError = /* @__PURE__ */ __name(async (request, env, _ctx, middlewareCtx)
 }, "jsonError");
 var middleware_miniflare3_json_error_default = jsonError;
 
-// ../.wrangler/tmp/bundle-lkLDfW/middleware-insertion-facade.js
+// ../.wrangler/tmp/bundle-wleJsc/middleware-insertion-facade.js
 var __INTERNAL_WRANGLER_MIDDLEWARE__ = [
   middleware_ensure_req_body_drained_default,
   middleware_miniflare3_json_error_default
@@ -17719,7 +17720,7 @@ function __facade_invoke__(request, env, ctx, dispatch, finalMiddleware) {
 }
 __name(__facade_invoke__, "__facade_invoke__");
 
-// ../.wrangler/tmp/bundle-lkLDfW/middleware-loader.entry.ts
+// ../.wrangler/tmp/bundle-wleJsc/middleware-loader.entry.ts
 var __Facade_ScheduledController__ = class ___Facade_ScheduledController__ {
   constructor(scheduledTime, cron, noRetry) {
     this.scheduledTime = scheduledTime;
