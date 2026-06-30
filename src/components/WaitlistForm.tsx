@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Loader2, CheckCircle, AlertTriangle, ArrowRight } from 'lucide-react';
-import { Link } from 'react-router-dom';
+import { Loader2, CheckCircle, AlertTriangle } from 'lucide-react';
 
 export default function WaitlistForm() {
   const [name, setName] = useState('');
@@ -60,7 +59,7 @@ export default function WaitlistForm() {
             onSubmit={handleSubmit}
             style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}
           >
-            <h3 className="text-mono" style={{ marginBottom: '0.5rem', textAlign: 'center' }}>Early Access Rolls Out Soon</h3>
+            <h3 className="text-mono" style={{ marginBottom: '0.5rem', textAlign: 'center' }}>Get Early Access</h3>
 
             <input
               type="text"
@@ -91,19 +90,8 @@ export default function WaitlistForm() {
             <button type="submit" className="btn btn-primary" disabled={status === 'loading'} style={{ marginTop: '0.5rem' }}>
               {status === 'loading' ? <Loader2 className="animate-spin" size={20} /> : 'Join Waitlist'}
             </button>
-            
-            <div style={{ marginTop: '1.5rem', textAlign: 'center' }}>
-              <Link 
-                to="/thesis" 
-                style={{ color: 'var(--text-secondary)', textDecoration: 'none', textUnderlineOffset: '4px', fontSize: '1rem', transition: 'all 0.2s', display: 'inline-flex', alignItems: 'center', gap: '0.5rem' }} 
-                onMouseEnter={(e) => { e.currentTarget.style.color = '#38bdf8'; e.currentTarget.style.textDecoration = 'underline'; }} 
-                onMouseLeave={(e) => { e.currentTarget.style.color = 'var(--text-secondary)'; e.currentTarget.style.textDecoration = 'none'; }}
-                onMouseDown={(e) => { e.currentTarget.style.color = '#0ea5e9'; e.currentTarget.style.textDecoration = 'underline'; }}
-                onMouseUp={(e) => { e.currentTarget.style.color = '#38bdf8'; e.currentTarget.style.textDecoration = 'underline'; }}
-              >
-                Thesis <ArrowRight size={16} />
-              </Link>
-            </div>
+
+
           </motion.form>
         )}
       </AnimatePresence>

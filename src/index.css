@@ -1,14 +1,15 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap');
+@import url('https://api.fontshare.com/v2/css?f[]=cabinet-grotesk@400,500,700,800,900&display=swap');
 
 :root {
-  --bg-color: #050505;
-  --text-primary: #f0f0f0;
-  --text-secondary: #a0a0a0;
+  --bg-color: #FDF6EE;
+  --text-primary: #2d2a26;
+  --text-secondary: #5c5855;
   --accent-color: #0284c7;
   --accent-glow: rgba(2, 132, 199, 0.2);
-  --glass-bg: rgba(255, 255, 255, 0.03);
-  --glass-border: rgba(255, 255, 255, 0.08);
-  --font-sans: 'Inter', sans-serif;
+  --glass-bg: rgba(255, 255, 255, 0.6);
+  --glass-border: rgba(0, 0, 0, 0.1);
+  --font-sans: 'Cabinet Grotesk', 'Inter', sans-serif;
   --font-mono: 'Space Mono', monospace;
 }
 
@@ -28,7 +29,7 @@ body {
 }
 
 h1, h2, h3, h4, h5, h6 {
-  font-family: var(--font-mono);
+  font-family: var(--font-sans);
   font-weight: 700;
   letter-spacing: -0.02em;
 }
@@ -94,7 +95,7 @@ a:hover {
 /* Forms */
 .input-field {
   width: 100%;
-  background: rgba(255, 255, 255, 0.05);
+  background: rgba(0, 0, 0, 0.03);
   border: 1px solid var(--glass-border);
   color: var(--text-primary);
   padding: 1rem;
@@ -108,7 +109,7 @@ a:hover {
 .input-field:focus {
   border-color: var(--accent-color);
   box-shadow: 0 0 10px var(--accent-glow);
-  background: rgba(255, 255, 255, 0.08);
+  background: rgba(0, 0, 0, 0.05);
 }
 
 .input-field::placeholder {
@@ -125,7 +126,7 @@ a:hover {
 }
 
 .gradient-text {
-  background: linear-gradient(135deg, #ffffff 0%, #a0a0a0 100%);
+  background: linear-gradient(135deg, #2d2a26 0%, #78716c 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -140,7 +141,7 @@ a:hover {
 }
 
 .animate-text-shades {
-  background: linear-gradient(-45deg, #38bdf8, #ffffff, #3b82f6, #a855f7, #38bdf8);
+  background: linear-gradient(-45deg, #38bdf8, #2d2a26, #0284c7, #8b5cf6, #38bdf8);
   background-size: 400% 400%;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -157,15 +158,26 @@ a:hover {
   padding: 0 clamp(1rem, 5vw, 2rem);
 }
 
-/* Background Effects */
-.bg-glow {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  width: 60vw;
-  height: 60vw;
-  background: radial-gradient(circle, rgba(2, 132, 199, 0.05) 0%, rgba(0, 0, 0, 0) 70%);
-  transform: translate(-50%, -50%);
-  z-index: -1;
-  pointer-events: none;
+/* Ambient Background Animations */
+@keyframes slowDrift1 {
+  0% { transform: translate(0, 0) scale(1); }
+  33% { transform: translate(3%, 5%) scale(1.05); }
+  66% { transform: translate(-2%, 2%) scale(0.95); }
+  100% { transform: translate(0, 0) scale(1); }
+}
+
+@keyframes slowDrift2 {
+  0% { transform: translate(0, 0) scale(1) rotate(0deg); }
+  50% { transform: translate(-4%, -3%) scale(1.1) rotate(10deg); }
+  100% { transform: translate(0, 0) scale(1) rotate(0deg); }
+}
+
+.ambient-shape-1 {
+  animation: slowDrift1 20s ease-in-out infinite;
+  transform-origin: center;
+}
+
+.ambient-shape-2 {
+  animation: slowDrift2 25s ease-in-out infinite;
+  transform-origin: center;
 }

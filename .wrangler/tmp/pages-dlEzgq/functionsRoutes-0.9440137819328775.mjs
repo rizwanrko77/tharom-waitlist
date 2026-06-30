@@ -1,4 +1,4 @@
-import { onRequestPost as __api_waitlist_ts_onRequestPost } from "C:\\Users\\91725\\Xapproach SaaS\\functions\\api\\waitlist.ts"
+import { onRequestPost as __api_waitlist_ts_onRequestPost } from "C:\\Users\\91725\\Xapproach Waitlist\\functions\\api\\waitlist.ts"
 
 export const routes = [
     {
