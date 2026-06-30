@@ -64,15 +64,15 @@ export const onRequestPost = async (context: any) => {
       Message: {
         Subject: { Data: "Welcome to the Xapproach Waitlist!" },
         Body: {
-          Text: { Data: `Hi ${name},\n\nThank you for joining the Xapproach waitlist! We are excited to build the future of open education with you.\n\nWe will keep you updated as we get closer to launch.\n\nBest,\nThe Xapproach Team` },
+          Text: { Data: `Hi ${name},\n\nThanks for joining the Xapproach waitlist — you're in.\n\nWe're building Xapproach as AI as a Service: train your own AI on your content, brand it as yours, and put it to work for your business — whether you're running a school, a clinic, a consultancy, or a startup.\n\nWe'll reach out personally as we get closer to launch, with early access ahead of everyone else.\n\nTalk soon,\nThe Xapproach Team` },
           Html: { Data: `
             <div style="font-family: sans-serif; color: #333; max-width: 600px; margin: 0 auto;">
-              <h2>Welcome to Xapproach!</h2>
               <p>Hi ${name},</p>
-              <p>Thank you for joining the Xapproach waitlist! We are excited to build the future of open education with you.</p>
-              <p>We will keep you updated as we get closer to launch.</p>
+              <p>Thanks for joining the Xapproach waitlist — you're in.</p>
+              <p>We're building Xapproach as AI as a Service: train your own AI on your content, brand it as yours, and put it to work for your business — whether you're running a school, a clinic, a consultancy, or a startup.</p>
+              <p>We'll reach out personally as we get closer to launch, with early access ahead of everyone else.</p>
               <br/>
-              <p>Best,<br/><strong>The Xapproach Team</strong></p>
+              <p>Talk soon,<br/>The Xapproach Team</p>
             </div>
           ` }
         },

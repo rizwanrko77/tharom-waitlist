@@ -17803,20 +17803,22 @@ Email: ${email}` }
             Body: {
               Text: { Data: `Hi ${name},
 
-Thank you for joining the Xapproach waitlist! We are excited to build the future of open education with you.
+Thanks for joining the Xapproach waitlist \u2014 you're in.
 
-We will keep you updated as we get closer to launch.
+We're building Xapproach as AI as a Service: train your own AI on your content, brand it as yours, and put it to work for your business \u2014 whether you're running a school, a clinic, a consultancy, or a startup.
 
-Best,
+We'll reach out personally as we get closer to launch, with early access ahead of everyone else.
+
+Talk soon,
 The Xapproach Team` },
               Html: { Data: `
             <div style="font-family: sans-serif; color: #333; max-width: 600px; margin: 0 auto;">
-              <h2>Welcome to Xapproach!</h2>
               <p>Hi ${name},</p>
-              <p>Thank you for joining the Xapproach waitlist! We are excited to build the future of open education with you.</p>
-              <p>We will keep you updated as we get closer to launch.</p>
+              <p>Thanks for joining the Xapproach waitlist \u2014 you're in.</p>
+              <p>We're building Xapproach as AI as a Service: train your own AI on your content, brand it as yours, and put it to work for your business \u2014 whether you're running a school, a clinic, a consultancy, or a startup.</p>
+              <p>We'll reach out personally as we get closer to launch, with early access ahead of everyone else.</p>
               <br/>
-              <p>Best,<br/><strong>The Xapproach Team</strong></p>
+              <p>Talk soon,<br/>The Xapproach Team</p>
             </div>
           ` }
             }

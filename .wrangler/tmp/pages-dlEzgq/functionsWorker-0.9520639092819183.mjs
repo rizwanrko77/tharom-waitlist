@@ -17124,20 +17124,22 @@ Email: ${email}` }
             Body: {
               Text: { Data: `Hi ${name},
 
-Thank you for joining the Xapproach waitlist! We are excited to build the future of open education with you.
+Thanks for joining the Xapproach waitlist \u2014 you're in.
 
-We will keep you updated as we get closer to launch.
+We're building Xapproach as AI as a Service: train your own AI on your content, brand it as yours, and put it to work for your business \u2014 whether you're running a school, a clinic, a consultancy, or a startup.
 
-Best,
+We'll reach out personally as we get closer to launch, with early access ahead of everyone else.
+
+Talk soon,
 The Xapproach Team` },
               Html: { Data: `
             <div style="font-family: sans-serif; color: #333; max-width: 600px; margin: 0 auto;">
-              <h2>Welcome to Xapproach!</h2>
               <p>Hi ${name},</p>
-              <p>Thank you for joining the Xapproach waitlist! We are excited to build the future of open education with you.</p>
-              <p>We will keep you updated as we get closer to launch.</p>
+              <p>Thanks for joining the Xapproach waitlist \u2014 you're in.</p>
+              <p>We're building Xapproach as AI as a Service: train your own AI on your content, brand it as yours, and put it to work for your business \u2014 whether you're running a school, a clinic, a consultancy, or a startup.</p>
+              <p>We'll reach out personally as we get closer to launch, with early access ahead of everyone else.</p>
               <br/>
-              <p>Best,<br/><strong>The Xapproach Team</strong></p>
+              <p>Talk soon,<br/>The Xapproach Team</p>
             </div>
           ` }
             }
@@ -17185,10 +17187,10 @@ var init_functionsRoutes_0_9440137819328775 = __esm({
   }
 });
 
-// ../.wrangler/tmp/bundle-F2JidI/middleware-loader.entry.ts
+// ../.wrangler/tmp/bundle-lkLDfW/middleware-loader.entry.ts
 init_functionsRoutes_0_9440137819328775();
 
-// ../.wrangler/tmp/bundle-F2JidI/middleware-insertion-facade.js
+// ../.wrangler/tmp/bundle-lkLDfW/middleware-insertion-facade.js
 init_functionsRoutes_0_9440137819328775();
 
 // ../node_modules/wrangler/templates/pages-template-worker.ts
@@ -17684,7 +17686,7 @@ var jsonError = /* @__PURE__ */ __name(async (request, env, _ctx, middlewareCtx)
 }, "jsonError");
 var middleware_miniflare3_json_error_default = jsonError;
 
-// ../.wrangler/tmp/bundle-F2JidI/middleware-insertion-facade.js
+// ../.wrangler/tmp/bundle-lkLDfW/middleware-insertion-facade.js
 var __INTERNAL_WRANGLER_MIDDLEWARE__ = [
   middleware_ensure_req_body_drained_default,
   middleware_miniflare3_json_error_default
@@ -17717,7 +17719,7 @@ function __facade_invoke__(request, env, ctx, dispatch, finalMiddleware) {
 }
 __name(__facade_invoke__, "__facade_invoke__");
 
-// ../.wrangler/tmp/bundle-F2JidI/middleware-loader.entry.ts
+// ../.wrangler/tmp/bundle-lkLDfW/middleware-loader.entry.ts
 var __Facade_ScheduledController__ = class ___Facade_ScheduledController__ {
   constructor(scheduledTime, cron, noRetry) {
     this.scheduledTime = scheduledTime;
