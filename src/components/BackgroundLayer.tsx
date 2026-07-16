@@ -39,7 +39,7 @@ export default function BackgroundLayer() {
             top: '-10%', left: '-10%',
             width: '70vw', height: '70vw',
             borderRadius: '50%',
-            background: 'radial-gradient(circle, rgba(2, 132, 199, 0.07) 0%, rgba(2, 132, 199, 0) 70%)',
+            background: 'radial-gradient(circle, rgba(243, 128, 32, 0.07) 0%, rgba(243, 128, 32, 0) 70%)',
             filter: 'blur(80px)',
           }}
         />
@@ -54,7 +54,7 @@ export default function BackgroundLayer() {
             bottom: '-20%', right: '-10%',
             width: '80vw', height: '60vw',
             borderRadius: '50%',
-            background: 'radial-gradient(circle, rgba(14, 165, 233, 0.06) 0%, rgba(14, 165, 233, 0) 70%)',
+            background: 'radial-gradient(circle, rgba(249, 168, 37, 0.06) 0%, rgba(249, 168, 37, 0) 70%)',
             filter: 'blur(100px)',
           }}
         />

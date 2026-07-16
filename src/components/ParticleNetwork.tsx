@@ -187,7 +187,7 @@ export default function ParticleNetwork() {
         const opacityMult = p1.life !== undefined ? Math.max(0, p1.life) : 1;
 
         // Draw Particle
-        ctx.fillStyle = `rgba(2, 132, 199, ${0.2 * opacityMult})`;
+        ctx.fillStyle = `rgba(0, 0, 0, ${0.2 * opacityMult})`;
         ctx.beginPath();
         ctx.arc(p1.x, p1.y, r1, 0, Math.PI * 2);
         ctx.fill();
@@ -210,7 +210,7 @@ export default function ParticleNetwork() {
             ctx.beginPath();
             ctx.moveTo(p1.x, p1.y);
             ctx.lineTo(p2.x, p2.y);
-            ctx.strokeStyle = `rgba(2, 132, 199, ${opacity * 0.15})`;
+            ctx.strokeStyle = `rgba(0, 0, 0, ${opacity * 0.15})`;
             ctx.lineWidth = 1;
             ctx.stroke();
           }

@@ -5,8 +5,8 @@
   --bg-color: #FDF6EE;
   --text-primary: #2d2a26;
   --text-secondary: #5c5855;
-  --accent-color: #0284c7;
-  --accent-glow: rgba(2, 132, 199, 0.2);
+  --accent-color: #F38020;
+  --accent-glow: rgba(243, 128, 32, 0.2);
   --glass-bg: rgba(255, 255, 255, 0.6);
   --glass-border: rgba(0, 0, 0, 0.1);
   --font-sans: 'Cabinet Grotesk', 'Inter', sans-serif;
@@ -78,7 +78,7 @@ a:hover {
 
 .btn-primary:hover {
   transform: translateY(-2px);
-  box-shadow: 0 0 30px rgba(2, 132, 199, 0.4);
+  box-shadow: 0 0 30px rgba(243, 128, 32, 0.4);
 }
 
 .btn-primary:active {
@@ -141,7 +141,7 @@ a:hover {
 }
 
 .animate-text-shades {
-  background: linear-gradient(-45deg, #38bdf8, #2d2a26, #0284c7, #8b5cf6, #38bdf8);
+  background: linear-gradient(-45deg, #F9A825, #2d2a26, #F38020, #E65100, #F9A825);
   background-size: 400% 400%;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;

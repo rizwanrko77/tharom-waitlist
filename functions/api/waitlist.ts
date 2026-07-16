@@ -1,110 +1,94 @@
-import { SESClient, SendEmailCommand } from "@aws-sdk/client-ses";
-
 interface Env {
-  SES_AWS_REGION?: string;
-  AWS_ACCESS_KEY_ID?: string;
-  AWS_SECRET_ACCESS_KEY?: string;
-  SES_FROM_EMAIL?: string;
+  GOOGLE_SHEET_WEBHOOK_URL?: string;
+  RESEND_API_KEY?: string;
 }
 
 export const onRequestPost = async (context: any) => {
   try {
     const request = context.request;
-    const body = await request.json() as { name?: string, email?: string };
+    const body = await request.json() as { name?: string; email?: string; usecase?: string };
 
-    if (!body.name || !body.email) {
-      return new Response(JSON.stringify({ error: "Name and email are required" }), { 
+    if (!body.name || !body.email || !body.usecase) {
+      return new Response(JSON.stringify({ error: "Name, email, and use case are required" }), {
         status: 400,
-        headers: { 'Content-Type': 'application/json' }
+        headers: { "Content-Type": "application/json" },
       });
     }
 
-    const { name, email } = body;
+    const { name, email, usecase } = body;
 
-    // Use environment variables for credentials
-    const region = context.env.SES_AWS_REGION;
-    const accessKeyId = context.env.AWS_ACCESS_KEY_ID;
-    const secretAccessKey = context.env.AWS_SECRET_ACCESS_KEY;
-    const fromEmail = context.env.SES_FROM_EMAIL;
-
-    if (!region || !accessKeyId || !secretAccessKey || !fromEmail) {
-      console.error("Missing SES environment variables");
-      return new Response(JSON.stringify({ error: "Server configuration error" }), { status: 500 });
+    const webhookUrl = context.env.GOOGLE_SHEET_WEBHOOK_URL;
+    if (!webhookUrl) {
+      console.error("Missing GOOGLE_SHEET_WEBHOOK_URL environment variable");
+      return new Response(JSON.stringify({ error: "Server configuration error" }), {
+        status: 500,
+        headers: { "Content-Type": "application/json" },
+      });
     }
 
-    const sesClient = new SESClient({
-      region,
-      credentials: {
-        accessKeyId,
-        secretAccessKey,
-      },
+    // Step 1: Always save to Google Sheet (marks new vs duplicate internally)
+    const sheetResponse = await fetch(webhookUrl, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ name, email, usecase }),
     });
 
-    // 1. Send notification to Xapproach team
-    const notifyCommand = new SendEmailCommand({
-      Source: fromEmail,
-      Destination: {
-        ToAddresses: ["hello@xapproach.com"],
-        CcAddresses: ["rizwanrko77@gmail.com"],
-      },
-      Message: {
-        Subject: { Data: `New Waitlist Signup: ${name}` },
-        Body: {
-          Text: { Data: `You have a new waitlist signup!\n\nName: ${name}\nEmail: ${email}` },
-        },
-      },
-    });
+    if (!sheetResponse.ok) {
+      console.error("Google Sheet webhook failed:", sheetResponse.status);
+      return new Response(JSON.stringify({ error: "Failed to save your details. Please try again." }), {
+        status: 500,
+        headers: { "Content-Type": "application/json" },
+      });
+    }
 
-    // 2. Send confirmation to User
-    const confirmCommand = new SendEmailCommand({
-      Source: fromEmail,
-      ReplyToAddresses: ["hello@xapproach.com"],
-      Destination: {
-        ToAddresses: [email],
-      },
-      Message: {
-        Subject: { Data: "Welcome to the Xapproach Waitlist!" },
-        Body: {
-          Text: { Data: `Hi ${name},\n\nThanks for joining the Xapproach waitlist. I'm Rizwan, building Xapproach as AI-as-a-Service, where you can train, brand, and monetize your own AI. Works for schools, clinics, consultants, startups, and a lot more use cases beyond that.\n\nEarly access is going out in batches. I'll personally make sure you get in as soon as possible.\n\nThis email went out automatically, but I read every reply myself. Write back if you want, I'll see it.\n\nRizwan\nTeam, Xapproach` },
-          Html: { Data: `
-            <div style="font-family: sans-serif; color: #333; max-width: 600px; margin: 0 auto;">
-              <p>Hi ${name},</p>
-              <p>Thanks for joining the Xapproach waitlist. I'm Rizwan, building Xapproach as AI-as-a-Service, where you can train, brand, and monetize your own AI. Works for schools, clinics, consultants, startups, and a lot more use cases beyond that.</p>
-              <p>Early access is going out in batches. I'll personally make sure you get in as soon as possible.</p>
-              <p>This email went out automatically, but I read every reply myself. Write back if you want, I'll see it.</p>
-              <br/>
-              <p>Rizwan<br/>Team, Xapproach</p>
-            </div>
-          ` }
-        },
-      },
-    });
+    const sheetData = await sheetResponse.json() as { success: boolean; duplicate?: boolean };
 
-    await Promise.all([
-      sesClient.send(notifyCommand),
-      sesClient.send(confirmCommand)
-    ]);
+    if (!sheetData.success) {
+      return new Response(JSON.stringify({ error: "Failed to save your details. Please try again." }), {
+        status: 500,
+        headers: { "Content-Type": "application/json" },
+      });
+    }
 
-    return new Response(JSON.stringify({ success: true }), {
+    // Step 2: Send welcome email only for new signups (plain text only)
+    if (!sheetData.duplicate) {
+      const resendApiKey = context.env.RESEND_API_KEY;
+      if (resendApiKey) {
+        try {
+          await fetch("https://api.resend.com/emails", {
+            method: "POST",
+            headers: {
+              "Authorization": `Bearer ${resendApiKey}`,
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              from: "Tharom AI <waitlist@tharom.com>",
+              reply_to: "rizwan@tharom.com",
+              to: [email],
+              subject: "You're on the Tharom AI waitlist",
+              text: `Hi ${name},\n\nThanks for joining the Tharom AI waitlist.\n\nI'm Rizwan, and I'm building Tharom AI - a platform where you can train, brand, and monetize your own AI. It works for almost every business use case, and I'll personally look into how it can be implemented for yours:\n\n"${usecase}"\n\nBased on your use case, we'll bring you in for early access - and I'll personally make sure you get in as soon as possible.\n\nThis email went out automatically, but I read every email myself. Reply to this email or write to rizwan@tharom.com anytime.\n\n— Rizwan\nFounder, Tharom AI`,
+            }),
+          });
+        } catch (emailError) {
+          // Email is best-effort — don't fail the request if email fails
+          // User data is already saved in Google Sheet
+          console.error("Resend email failed (non-critical):", emailError);
+        }
+      }
+    }
+
+    return new Response(JSON.stringify({
+      success: true,
+      duplicate: sheetData.duplicate || false,
+    }), {
       status: 200,
-      headers: { 'Content-Type': 'application/json' }
+      headers: { "Content-Type": "application/json" },
     });
-
   } catch (error: any) {
-    // The AWS SDK SES client throws a DOMParser error in Cloudflare Workers 
-    // when trying to parse the XML response, even if the email was successfully sent.
-    // If the HTTP status code is 200, the email was sent successfully.
-    if (error && error.$metadata && error.$metadata.httpStatusCode === 200) {
-      return new Response(JSON.stringify({ success: true }), {
-        status: 200,
-        headers: { 'Content-Type': 'application/json' }
-      });
-    }
-
-    console.error("SES Email Error:", error);
-    return new Response(JSON.stringify({ error: "Failed to send email. Please try again later." }), { 
+    console.error("Waitlist Error:", error);
+    return new Response(JSON.stringify({ error: "Something went wrong. Please try again later." }), {
       status: 500,
-      headers: { 'Content-Type': 'application/json' }
+      headers: { "Content-Type": "application/json" },
     });
   }
 };

@@ -12,10 +12,10 @@ const containerVariants: Variants = {
 
 const itemVariants: Variants = {
   hidden: { opacity: 0, y: 30 },
-  show: { 
-    opacity: 1, 
-    y: 0, 
-    transition: { type: "spring", stiffness: 50, damping: 15 } 
+  show: {
+    opacity: 1,
+    y: 0,
+    transition: { type: "spring", stiffness: 50, damping: 15 }
   }
 };
 
@@ -28,44 +28,25 @@ export default function Landing() {
           initial="hidden"
           animate="show"
         >
-          {/* Eyebrow Tag */}
-          <motion.div variants={itemVariants} style={{ marginBottom: '1.5rem' }}>
-            <span style={{ 
-              display: 'inline-block',
-              fontSize: '0.85rem', 
-              fontWeight: 500, 
-              padding: '0.35rem 1rem', 
-              borderRadius: '9999px',
-              backgroundColor: 'rgba(2, 132, 199, 0.1)',
-              color: 'var(--accent-color)',
-              border: '1px solid rgba(2, 132, 199, 0.2)',
-              fontFamily: 'var(--font-mono)',
-              textTransform: 'uppercase',
-              letterSpacing: '0.05em'
-            }}>
-              AI as a Service
-            </span>
-          </motion.div>
-
           {/* Headline */}
-          <motion.h1 variants={itemVariants} style={{ 
-            fontSize: 'clamp(2.5rem, 6vw, 4.5rem)', 
-            lineHeight: 1.1, 
-            marginBottom: '1.5rem', 
-            fontFamily: 'var(--font-sans)', 
+          <motion.h1 variants={itemVariants} style={{
+            fontSize: 'clamp(2.5rem, 6vw, 4.5rem)',
+            lineHeight: 1.1,
+            marginBottom: '1.5rem',
+            fontFamily: 'var(--font-sans)',
             fontWeight: 600,
             color: 'var(--text-primary)',
             letterSpacing: '-0.02em'
           }}>
-            Trained, Monetized, <br className="hide-on-mobile" /><span style={{ color: 'var(--accent-color)' }}>Owned by You.</span>
+            Own Your AI Model <br className="hide-on-mobile" /><span style={{ color: 'var(--accent-color)' }}>For Your Users.</span>
           </motion.h1>
 
           {/* Subheadline */}
-          <motion.p 
+          <motion.p
             variants={itemVariants}
-            style={{ 
-              fontSize: 'clamp(1rem, 2.5vw, 1.25rem)', 
-              color: 'var(--text-secondary)', 
+            style={{
+              fontSize: 'clamp(1rem, 2.5vw, 1.25rem)',
+              color: 'var(--text-secondary)',
               marginBottom: '3rem',
               maxWidth: '650px',
               marginLeft: 'auto',
