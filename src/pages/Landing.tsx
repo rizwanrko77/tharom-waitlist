@@ -189,7 +189,7 @@ export default function Landing() {
         viewport={{ once: true, margin: '-80px' }}
         style={{ padding: '5rem 0' }}
       >
-        <div className="container" style={{ maxWidth: '800px', textAlign: 'center' }}>
+        <div className="container" style={{ maxWidth: '1050px', textAlign: 'center' }}>
           <h2 style={{
             fontSize: 'clamp(1.8rem, 4vw, 2.5rem)',
             fontFamily: 'var(--font-sans)',
@@ -205,13 +205,16 @@ export default function Landing() {
             color: 'var(--text-secondary)',
             lineHeight: 1.8,
             marginBottom: '2.5rem',
+            maxWidth: '800px',
+            marginLeft: 'auto',
+            marginRight: 'auto',
           }}>
             Tharom is designed for anyone with knowledge worth sharing — and learners who need help absorbing it.
           </p>
 
           <div style={{
             display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))',
             gap: '1.5rem',
           }}>
             <AudienceCard
@@ -366,7 +369,7 @@ export default function Landing() {
 
 function StepCard({ icon, step, title, description }: { icon: React.ReactNode; step: number; title: string; description: string }) {
   return (
-    <div className="glass-panel" style={{ padding: '2rem', textAlign: 'left' }}>
+    <div className="glass-panel" style={{ padding: '2rem', textAlign: 'left', display: 'flex', flexDirection: 'column', height: '100%' }}>
       <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', marginBottom: '1rem' }}>
         <div style={{
           width: '48px',
@@ -409,7 +412,7 @@ function StepCard({ icon, step, title, description }: { icon: React.ReactNode; s
 
 function AudienceCard({ icon, title, description }: { icon: React.ReactNode; title: string; description: string }) {
   return (
-    <div className="glass-panel" style={{ padding: '1.5rem', textAlign: 'center' }}>
+    <div className="glass-panel" style={{ padding: '1.5rem', textAlign: 'center', display: 'flex', flexDirection: 'column', height: '100%' }}>
       <div style={{
         width: '44px',
         height: '44px',
