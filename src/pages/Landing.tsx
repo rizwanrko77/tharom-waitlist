@@ -74,7 +74,7 @@ export default function Landing() {
               color: 'var(--text-primary)',
               letterSpacing: '-0.02em'
             }}>
-              Own Your AI Model <br className="hide-on-mobile" /><span style={{ color: 'var(--accent-color)' }}>For Your Users.</span>
+              Own Your AI Model <br className="hide-on-mobile" /><span style={{ color: 'var(--accent-color)' }}>For Your Own Users.</span>
             </motion.h1>
 
             {/* Subheadline */}
