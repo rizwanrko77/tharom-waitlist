@@ -1,7 +1,7 @@
 
 import { useState } from 'react';
 import { motion, type Variants } from 'framer-motion';
-import { Upload, Brain, MessageCircle, GraduationCap, Building2, BookOpen, ChevronDown } from 'lucide-react';
+import { Upload, Brain, MessageCircle, GraduationCap, Building2, BookOpen, Rocket, ChevronDown } from 'lucide-react';
 import WaitlistForm from '../components/WaitlistForm';
 
 const containerVariants: Variants = {
@@ -228,6 +228,11 @@ export default function Landing() {
               icon={<BookOpen size={24} />}
               title="Coaching & EdTech"
               description="Give students AI-powered help grounded in your own course material."
+            />
+            <AudienceCard
+              icon={<Rocket size={24} />}
+              title="Product Companies & Startups"
+              description="Help your users understand your product with AI trained on your own docs and knowledge base."
             />
           </div>
         </div>
