@@ -1,7 +1,7 @@
 
 import { useState } from 'react';
 import { motion, type Variants } from 'framer-motion';
-import { Upload, Brain, MessageCircle, GraduationCap, Building2, BookOpen, Rocket, ChevronDown } from 'lucide-react';
+import { GraduationCap, Building2, BookOpen, Rocket, ChevronDown } from 'lucide-react';
 import WaitlistForm from '../components/WaitlistForm';
 
 const containerVariants: Variants = {
@@ -32,31 +32,23 @@ const sectionVariants: Variants = {
 
 const faqData = [
   {
-    q: 'What happens to the content I upload?',
-    a: 'Your content stays yours. It is used only within your workspace to power AI responses for your learners. It is not shared with other workspaces and is not used to train or improve any AI models.',
-  },
-  {
-    q: 'Who can access my workspace content?',
-    a: 'Only learners you invite to your workspace. Each workspace is completely isolated — your content, your users, your data.',
-  },
-  {
     q: 'How much does Tharom cost?',
-    a: 'Pricing has not been announced yet. We are designing it to be accessible for educational institutions. Waitlist members will be the first to hear when pricing is finalised.',
+    a: 'Pricing hasn\'t been announced yet. We\'re designing it to be accessible for educational institutions. Waitlist members will be the first to know.',
   },
   {
     q: 'When does Tharom launch?',
-    a: 'We are targeting September 2026. Waitlist members will receive early access invitations before the public launch.',
+    a: 'We\'re opening access to a few users at a time and will soon be open to all. Waitlist members will be the first to get in.',
   },
   {
     q: 'Is this only for schools?',
-    a: 'Schools and educational institutions are our primary audience, but Tharom works for any organisation that has a body of knowledge its users need to learn from — training companies, consultancies, coaching centres.',
+    a: 'Education is our starting point, but Tharom is built for any organisation with a body of knowledge its users need to learn from — training companies, consultancies, coaching centres, and more.',
   },
 ];
 
 export default function Landing() {
   return (
     <div style={{ position: 'relative', zIndex: 10 }}>
-      {/* ─── HERO (unchanged) ─── */}
+      {/* ─── HERO ─── */}
       <div style={{ minHeight: 'calc(100vh - 80px)', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
         <div className="container" style={{ textAlign: 'center', paddingTop: '4rem', paddingBottom: '4rem' }}>
           <motion.div
@@ -74,7 +66,7 @@ export default function Landing() {
               color: 'var(--text-primary)',
               letterSpacing: '-0.02em'
             }}>
-              Own Your AI Model <br className="hide-on-mobile" /><span style={{ color: 'var(--accent-color)' }}>For Your Own Users.</span>
+              AI Infrastructure <br className="hide-on-mobile" /><span style={{ color: 'var(--accent-color)' }}>for Your Knowledge.</span>
             </motion.h1>
 
             {/* Subheadline */}
@@ -90,7 +82,7 @@ export default function Landing() {
                 lineHeight: 1.6
               }}
             >
-              From schools to startups, clinics to consultants — turn your expertise into your own branded AI, working for your business.
+              Built for education and beyond — Tharom gives organisations the AI layer to put their expertise to work for the people who need it.
             </motion.p>
 
             <motion.div variants={itemVariants}>
@@ -100,7 +92,7 @@ export default function Landing() {
         </div>
       </div>
 
-      {/* ─── THE PROBLEM ─── */}
+      {/* ─── THE GAP ─── */}
       <motion.section
         variants={sectionVariants}
         initial="hidden"
@@ -117,7 +109,7 @@ export default function Landing() {
             marginBottom: '1.5rem',
             letterSpacing: '-0.02em',
           }}>
-            Great Teaching Material Deserves Better Than a File Server
+            Your Knowledge Deserves Its Own AI
           </h2>
           <p style={{
             fontSize: 'clamp(1rem, 2vw, 1.15rem)',
@@ -126,62 +118,12 @@ export default function Landing() {
             maxWidth: '650px',
             margin: '0 auto',
           }}>
-            Schools and institutions spend years building course material — lecture notes, recordings, documents, guides. But learners can only browse or download. They can't ask questions, get explanations, or work through the material at their own pace. The knowledge is there, but it's locked in files.
+            Organisations spend years building expertise — courses, training material, documentation, processes. Generic AI tools can't use any of it. They don't know your content, your context, or your users. Tharom is building the infrastructure to change that.
           </p>
         </div>
       </motion.section>
 
-      {/* ─── HOW IT WORKS ─── */}
-      <motion.section
-        variants={sectionVariants}
-        initial="hidden"
-        whileInView="show"
-        viewport={{ once: true, margin: '-80px' }}
-        style={{ padding: '5rem 0' }}
-      >
-        <div className="container">
-          <h2 style={{
-            fontSize: 'clamp(1.8rem, 4vw, 2.5rem)',
-            fontFamily: 'var(--font-sans)',
-            fontWeight: 700,
-            color: 'var(--text-primary)',
-            marginBottom: '3rem',
-            letterSpacing: '-0.02em',
-            textAlign: 'center',
-          }}>
-            How Tharom Works
-          </h2>
-
-          <div style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
-            gap: '2rem',
-            maxWidth: '960px',
-            margin: '0 auto',
-          }}>
-            <StepCard
-              icon={<Upload size={28} />}
-              step={1}
-              title="Upload Your Material"
-              description="Documents, lecture notes, transcripts, video recordings — anything your learners need. Tharom ingests it all into your private workspace."
-            />
-            <StepCard
-              icon={<Brain size={28} />}
-              step={2}
-              title="AI Grounds in Your Content"
-              description="Tharom builds an AI assistant that understands your material — not the open internet, just your content. Accurate, relevant, and within scope."
-            />
-            <StepCard
-              icon={<MessageCircle size={28} />}
-              step={3}
-              title="Learners Chat With It"
-              description="Your students or users ask questions, get explanations, and work through the material conversationally — available any time, from any device."
-            />
-          </div>
-        </div>
-      </motion.section>
-
-      {/* ─── WHO IT'S FOR ─── */}
+      {/* ─── BUILT FOR ─── */}
       <motion.section
         variants={sectionVariants}
         initial="hidden"
@@ -198,7 +140,7 @@ export default function Landing() {
             marginBottom: '1.5rem',
             letterSpacing: '-0.02em',
           }}>
-            Built for Educators, Open to All
+            Built for Education. Open to All.
           </h2>
           <p style={{
             fontSize: 'clamp(1rem, 2vw, 1.15rem)',
@@ -209,7 +151,7 @@ export default function Landing() {
             marginLeft: 'auto',
             marginRight: 'auto',
           }}>
-            Tharom is designed for anyone with knowledge worth sharing — and learners who need help absorbing it.
+            Tharom is designed for any organisation that has knowledge worth putting to work.
           </p>
 
           <div style={{
@@ -220,85 +162,23 @@ export default function Landing() {
             <AudienceCard
               icon={<GraduationCap size={24} />}
               title="Schools & Universities"
-              description="Turn syllabi and lectures into an always-available study companion."
+              description="Give learners an AI that actually knows your curriculum."
             />
             <AudienceCard
               icon={<Building2 size={24} />}
-              title="Training Organisations"
-              description="Let employees or trainees learn from your SOPs, manuals, and guides."
+              title="Training & L&D"
+              description="Equip teams with AI grounded in your processes, manuals, and SOPs."
             />
             <AudienceCard
               icon={<BookOpen size={24} />}
               title="Coaching & EdTech"
-              description="Give students AI-powered help grounded in your own course material."
+              description="Extend your teaching with AI that reflects your methodology."
             />
             <AudienceCard
               icon={<Rocket size={24} />}
-              title="Product Companies & Startups"
-              description="Help your users understand your product with AI trained on your own docs and knowledge base."
+              title="Any Organisation"
+              description="If you have a knowledge base and users who need to learn from it, Tharom is for you."
             />
-          </div>
-        </div>
-      </motion.section>
-
-      {/* ─── WHAT A WORKSPACE GETS ─── */}
-      <motion.section
-        variants={sectionVariants}
-        initial="hidden"
-        whileInView="show"
-        viewport={{ once: true, margin: '-80px' }}
-        style={{ padding: '5rem 0' }}
-      >
-        <div className="container" style={{ maxWidth: '800px', textAlign: 'center' }}>
-          <h2 style={{
-            fontSize: 'clamp(1.8rem, 4vw, 2.5rem)',
-            fontFamily: 'var(--font-sans)',
-            fontWeight: 700,
-            color: 'var(--text-primary)',
-            marginBottom: '1.5rem',
-            letterSpacing: '-0.02em',
-          }}>
-            Your Workspace, Your Brand
-          </h2>
-          <p style={{
-            fontSize: 'clamp(1rem, 2vw, 1.15rem)',
-            color: 'var(--text-secondary)',
-            lineHeight: 1.8,
-            marginBottom: '2.5rem',
-          }}>
-            Each institution gets its own isolated environment. Your content stays yours, and your learners see your brand.
-          </p>
-
-          <div className="glass-panel" style={{
-            padding: '2rem',
-            textAlign: 'left',
-          }}>
-            <ul style={{
-              listStyle: 'none',
-              padding: 0,
-              display: 'grid',
-              gap: '1rem',
-            }}>
-              {[
-                ['Branded subdomain', 'your-school.tharom.com — your identity, powered by Tharom'],
-                ['Private content library', 'Upload and manage your material in one place'],
-                ['Your own users', 'Invite learners and control who has access'],
-                ['Usage-based metering', 'Pay for what your learners actually use, nothing more'],
-              ].map(([title, desc]) => (
-                <li key={title} style={{ display: 'flex', gap: '0.75rem', alignItems: 'flex-start' }}>
-                  <span style={{
-                    color: 'var(--accent-color)',
-                    fontSize: '1.2rem',
-                    lineHeight: 1.4,
-                    flexShrink: 0,
-                  }}>✓</span>
-                  <div>
-                    <strong style={{ color: 'var(--text-primary)' }}>{title}</strong>
-                    <span style={{ color: 'var(--text-secondary)', marginLeft: '0.4rem' }}>— {desc}</span>
-                  </div>
-                </li>
-              ))}
-            </ul>
           </div>
         </div>
       </motion.section>
@@ -349,14 +229,14 @@ export default function Landing() {
             marginBottom: '1rem',
             letterSpacing: '-0.02em',
           }}>
-            Interested? Join the Waitlist.
+            Be the First to Build on Tharom.
           </h2>
           <p style={{
             color: 'var(--text-secondary)',
             marginBottom: '2rem',
             fontSize: '1.05rem',
           }}>
-            We're launching in September 2026. Waitlist members get early access.
+            We're opening access to a few users at a time. Join the waitlist to be first in line.
           </p>
           <WaitlistForm />
         </div>
@@ -366,49 +246,6 @@ export default function Landing() {
 }
 
 /* ─── Sub-components ─── */
-
-function StepCard({ icon, step, title, description }: { icon: React.ReactNode; step: number; title: string; description: string }) {
-  return (
-    <div className="glass-panel" style={{ padding: '2rem', textAlign: 'left', display: 'flex', flexDirection: 'column', height: '100%' }}>
-      <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', marginBottom: '1rem' }}>
-        <div style={{
-          width: '48px',
-          height: '48px',
-          borderRadius: '12px',
-          background: 'rgba(243, 128, 32, 0.1)',
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-          color: 'var(--accent-color)',
-          flexShrink: 0,
-        }}>
-          {icon}
-        </div>
-        <span style={{
-          fontSize: '0.8rem',
-          fontFamily: 'var(--font-mono)',
-          color: 'var(--text-secondary)',
-          textTransform: 'uppercase',
-          letterSpacing: '0.05em',
-        }}>
-          Step {step}
-        </span>
-      </div>
-      <h3 style={{
-        fontSize: '1.15rem',
-        fontFamily: 'var(--font-sans)',
-        fontWeight: 600,
-        color: 'var(--text-primary)',
-        marginBottom: '0.5rem',
-      }}>
-        {title}
-      </h3>
-      <p style={{ color: 'var(--text-secondary)', lineHeight: 1.7, fontSize: '0.95rem' }}>
-        {description}
-      </p>
-    </div>
-  );
-}
 
 function AudienceCard({ icon, title, description }: { icon: React.ReactNode; title: string; description: string }) {
   return (
@@ -500,4 +337,3 @@ function FaqItem({ question, answer }: { question: string; answer: string }) {
     </div>
   );
 }
-

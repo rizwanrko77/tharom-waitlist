@@ -1,6 +1,5 @@
 interface Env {
   GOOGLE_SHEET_WEBHOOK_URL?: string;
-  RESEND_API_KEY?: string;
 }
 
 export const onRequestPost = async (context: any) => {
@@ -26,7 +25,7 @@ export const onRequestPost = async (context: any) => {
       });
     }
 
-    // Step 1: Always save to Google Sheet (marks new vs duplicate internally)
+    // Save to Google Sheet (duplicate detection + welcome email handled by App Script)
     const sheetResponse = await fetch(webhookUrl, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -48,33 +47,6 @@ export const onRequestPost = async (context: any) => {
         status: 500,
         headers: { "Content-Type": "application/json" },
       });
-    }
-
-    // Step 2: Send welcome email only for new signups (plain text only)
-    if (!sheetData.duplicate) {
-      const resendApiKey = context.env.RESEND_API_KEY;
-      if (resendApiKey) {
-        try {
-          await fetch("https://api.resend.com/emails", {
-            method: "POST",
-            headers: {
-              "Authorization": `Bearer ${resendApiKey}`,
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify({
-              from: "Tharom AI <waitlist@tharom.com>",
-              reply_to: "rizwan@tharom.com",
-              to: [email],
-              subject: "You're on the Tharom AI waitlist",
-              text: `Hi ${name},\n\nThanks for joining the Tharom AI waitlist.\n\nI'm Rizwan, and I'm building Tharom AI - a platform where you can train, brand, and monetize your own AI. It works for almost every business use case, and I'll personally look into how it can be implemented for yours:\n\n"${usecase}"\n\nBased on your use case, we'll bring you in for early access - and I'll personally make sure you get in as soon as possible.\n\nThis email went out automatically, but I read every email myself. Reply to this email or write to rizwan@tharom.com anytime.\n\n— Rizwan\nFounder, Tharom AI`,
-            }),
-          });
-        } catch (emailError) {
-          // Email is best-effort — don't fail the request if email fails
-          // User data is already saved in Google Sheet
-          console.error("Resend email failed (non-critical):", emailError);
-        }
-      }
     }
 
     return new Response(JSON.stringify({
