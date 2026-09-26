@@ -1,7 +1,7 @@
 
 import { useState } from 'react';
 import { motion, type Variants } from 'framer-motion';
-import { GraduationCap, Building2, BookOpen, Rocket, ChevronDown } from 'lucide-react';
+import { GraduationCap, HeartPulse, LifeBuoy, Rocket, ChevronDown } from 'lucide-react';
 import WaitlistForm from '../components/WaitlistForm';
 
 const containerVariants: Variants = {
@@ -33,15 +33,19 @@ const sectionVariants: Variants = {
 const faqData = [
   {
     q: 'How much does Tharom cost?',
-    a: 'Pricing hasn\'t been announced yet. We\'re designing it to be accessible for educational institutions. Waitlist members will be the first to know.',
+    a: 'Tharom will be pay as you go, so you only pay for what you use. Exact pricing hasn\'t been announced yet. Waitlist members will be the first to know.',
   },
   {
     q: 'When does Tharom launch?',
     a: 'We\'re opening access to a few users at a time and will soon be open to all. Waitlist members will be the first to get in.',
   },
   {
-    q: 'Is this only for schools?',
-    a: 'Education is our starting point, but Tharom is built for any organisation with a body of knowledge its users need to learn from — training companies, consultancies, coaching centres, and more.',
+    q: 'Will Tharom work for my use case?',
+    a: 'Tharom is built to handle many kinds of use cases, including education, healthcare, product help and AI startups. If yours is something else, mention it when you join the waitlist. We\'d like to hear about it.',
+  },
+  {
+    q: 'Does Tharom replace my team?',
+    a: 'No. AI takes the routine work, and your experts stay in charge of the decisions that need them.',
   },
 ];
 
@@ -66,7 +70,7 @@ export default function Landing() {
               color: 'var(--text-primary)',
               letterSpacing: '-0.02em'
             }}>
-              AI Infrastructure <br className="hide-on-mobile" /><span style={{ color: 'var(--accent-color)' }}>for Your Knowledge.</span>
+              One AI Infrastructure. <br className="hide-on-mobile" /><span style={{ color: 'var(--accent-color)' }}>Infinite Use Cases.</span>
             </motion.h1>
 
             {/* Subheadline */}
@@ -82,7 +86,7 @@ export default function Landing() {
                 lineHeight: 1.6
               }}
             >
-              Built for education and beyond — Tharom gives organisations the AI layer to put their expertise to work for the people who need it.
+              Launch AI for your users under your own brand, with your experts in the loop. Tharom manages everything behind it.
             </motion.p>
 
             <motion.div variants={itemVariants}>
@@ -91,37 +95,6 @@ export default function Landing() {
           </motion.div>
         </div>
       </div>
-
-      {/* ─── THE GAP ─── */}
-      <motion.section
-        variants={sectionVariants}
-        initial="hidden"
-        whileInView="show"
-        viewport={{ once: true, margin: '-80px' }}
-        style={{ padding: '5rem 0' }}
-      >
-        <div className="container" style={{ maxWidth: '800px', textAlign: 'center' }}>
-          <h2 style={{
-            fontSize: 'clamp(1.8rem, 4vw, 2.5rem)',
-            fontFamily: 'var(--font-sans)',
-            fontWeight: 700,
-            color: 'var(--text-primary)',
-            marginBottom: '1.5rem',
-            letterSpacing: '-0.02em',
-          }}>
-            Your Knowledge Deserves Its Own AI
-          </h2>
-          <p style={{
-            fontSize: 'clamp(1rem, 2vw, 1.15rem)',
-            color: 'var(--text-secondary)',
-            lineHeight: 1.8,
-            maxWidth: '650px',
-            margin: '0 auto',
-          }}>
-            Organisations spend years building expertise — courses, training material, documentation, processes. Generic AI tools can't use any of it. They don't know your content, your context, or your users. Tharom is building the infrastructure to change that.
-          </p>
-        </div>
-      </motion.section>
 
       {/* ─── BUILT FOR ─── */}
       <motion.section
@@ -140,7 +113,7 @@ export default function Landing() {
             marginBottom: '1.5rem',
             letterSpacing: '-0.02em',
           }}>
-            Built for Education. Open to All.
+            AI and Experts, Working Together.
           </h2>
           <p style={{
             fontSize: 'clamp(1rem, 2vw, 1.15rem)',
@@ -151,7 +124,7 @@ export default function Landing() {
             marginLeft: 'auto',
             marginRight: 'auto',
           }}>
-            Tharom is designed for any organisation that has knowledge worth putting to work.
+            You own the brand and the relationship with your users. Tharom provides the fully managed AI infrastructure, where AI handles the routine work and your people step in when it counts.
           </p>
 
           <div style={{
@@ -161,25 +134,33 @@ export default function Landing() {
           }}>
             <AudienceCard
               icon={<GraduationCap size={24} />}
-              title="Schools & Universities"
-              description="Give learners an AI that actually knows your curriculum."
+              title="Education"
+              description="Give your students AI support while your teachers stay in the loop to guide and review."
             />
             <AudienceCard
-              icon={<Building2 size={24} />}
-              title="Training & L&D"
-              description="Equip teams with AI grounded in your processes, manuals, and SOPs."
+              icon={<HeartPulse size={24} />}
+              title="Healthcare"
+              description="Handle patient questions, routine requests and appointment booking with AI."
             />
             <AudienceCard
-              icon={<BookOpen size={24} />}
-              title="Coaching & EdTech"
-              description="Extend your teaching with AI that reflects your methodology."
+              icon={<LifeBuoy size={24} />}
+              title="Product Help"
+              description="Let AI answer common questions and pass the rest to your team when a person is needed."
             />
             <AudienceCard
               icon={<Rocket size={24} />}
-              title="Any Organisation"
-              description="If you have a knowledge base and users who need to learn from it, Tharom is for you."
+              title="AI-Powered Startups"
+              description="Ship your AI product without building or running the infrastructure yourself."
             />
           </div>
+
+          <p style={{
+            color: 'var(--text-secondary)',
+            fontSize: 'clamp(1rem, 2vw, 1.1rem)',
+            marginTop: '2.5rem',
+          }}>
+            And many more. <span style={{ color: 'var(--accent-color)', fontWeight: 600 }}>Tell us yours when you join the waitlist.</span>
+          </p>
         </div>
       </motion.section>
 

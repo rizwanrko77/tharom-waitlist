@@ -137,7 +137,7 @@ export default function WaitlistForm() {
             />
             <textarea
               className="input-field"
-              placeholder="Tell us about your organisation and how you'd like to use Tharom"
+              placeholder="Tell us about your business and what you'd like to build with AI"
               value={usecase}
               onChange={(e) => setUsecase(e.target.value)}
               required
