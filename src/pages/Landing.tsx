@@ -49,6 +49,15 @@ const faqData = [
   },
 ];
 
+// Smooth-scroll to the bottom form and put the cursor in its first field
+function scrollToJoinForm(e: React.MouseEvent) {
+  const section = document.getElementById('join');
+  if (!section) return;
+  e.preventDefault();
+  section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  section.querySelector<HTMLInputElement>('input')?.focus({ preventScroll: true });
+}
+
 export default function Landing() {
   return (
     <div style={{ position: 'relative', zIndex: 10 }}>
@@ -90,7 +99,25 @@ export default function Landing() {
             </motion.p>
 
             <motion.div variants={itemVariants}>
-              <WaitlistForm />
+              <div className="glass-panel" style={{
+                padding: '3rem 2rem',
+                maxWidth: '500px',
+                margin: '0 auto',
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems: 'center',
+                gap: '1.5rem',
+              }}>
+                <h3 className="text-mono" style={{ marginBottom: '0' }}>Get Early Access</h3>
+                <a
+                  href="#join"
+                  className="btn"
+                  onClick={scrollToJoinForm}
+                  style={{ width: '100%', background: '#1e293b', color: '#fff' }}
+                >
+                  Join Waitlist
+                </a>
+              </div>
             </motion.div>
           </motion.div>
         </div>
@@ -159,7 +186,11 @@ export default function Landing() {
             fontSize: 'clamp(1rem, 2vw, 1.1rem)',
             marginTop: '2.5rem',
           }}>
-            And many more. <span style={{ color: 'var(--accent-color)', fontWeight: 600 }}>Tell us yours when you join the waitlist.</span>
+            And many more. <span style={{ color: 'var(--accent-color)', fontWeight: 600 }}>Tell us yours when you <a
+              href="#join"
+              onClick={scrollToJoinForm}
+              style={{ color: 'inherit', textDecoration: 'underline', textUnderlineOffset: '3px' }}
+            >join the waitlist</a>.</span>
           </p>
         </div>
       </motion.section>
@@ -195,6 +226,7 @@ export default function Landing() {
 
       {/* ─── BOTTOM CTA ─── */}
       <motion.section
+        id="join"
         variants={sectionVariants}
         initial="hidden"
         whileInView="show"

@@ -1,14 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Loader2, CheckCircle, AlertTriangle } from 'lucide-react';
-
-const WAITLIST_STORAGE_KEY = 'tharom_waitlist_joined';
 
 const AI_STATUS_OPTIONS = ['Not yet', 'Exploring options', 'Yes, already in use'] as const;
 const AI_IN_USE = 'Yes, already in use';
 
 export default function WaitlistForm() {
-  const [step, setStep] = useState<'intro' | 'form'>('intro');
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [usecase, setUsecase] = useState('');
@@ -16,14 +13,6 @@ export default function WaitlistForm() {
   const [aiDetails, setAiDetails] = useState('');
   const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error' | 'already'>('idle');
   const [errorMessage, setErrorMessage] = useState('');
-
-  // Check localStorage on mount for returning visitors
-  useEffect(() => {
-    const joined = localStorage.getItem(WAITLIST_STORAGE_KEY);
-    if (joined) {
-      setStatus('already');
-    }
-  }, []);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -47,9 +36,7 @@ export default function WaitlistForm() {
       const data = await response.json();
 
       if (response.ok) {
-        // Save to localStorage so returning visitors see the success state
-        localStorage.setItem(WAITLIST_STORAGE_KEY, JSON.stringify({ name, email, ts: Date.now() }));
-
+        // The Apps Script checks the sheet and flags emails that already signed up
         if (data.duplicate) {
           setStatus('already');
         } else {
@@ -91,31 +78,6 @@ export default function WaitlistForm() {
             <CheckCircle className="text-accent" size={48} style={{ margin: '0 auto 1rem' }} />
             <h3 className="text-mono" style={{ marginBottom: '0.5rem' }}>You're already on the list!</h3>
             <p style={{ color: 'var(--text-secondary)' }}>We've got your details. Stay tuned for early access.</p>
-          </motion.div>
-        ) : step === 'intro' ? (
-          <motion.div
-            key="intro"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0, y: -10 }}
-            style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '1.5rem', padding: '1rem 0' }}
-          >
-            <h3 className="text-mono" style={{ marginBottom: '0' }}>Get Early Access</h3>
-            <button
-              type="button"
-              className="btn"
-              onClick={() => setStep('form')}
-              style={{
-                marginTop: '0.25rem',
-                width: '100%',
-                background: '#1e293b',
-                color: '#fff',
-                border: 'none',
-                cursor: 'pointer',
-              }}
-            >
-              Join Waitlist
-            </button>
           </motion.div>
         ) : (
           <motion.form
