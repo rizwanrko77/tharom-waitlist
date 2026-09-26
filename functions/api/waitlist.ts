@@ -2,10 +2,18 @@ interface Env {
   GOOGLE_SHEET_WEBHOOK_URL?: string;
 }
 
+const AI_STATUS_OPTIONS = ["Not yet", "Exploring options", "Yes, already in use"];
+
 export const onRequestPost = async (context: any) => {
   try {
     const request = context.request;
-    const body = await request.json() as { name?: string; email?: string; usecase?: string };
+    const body = await request.json() as {
+      name?: string;
+      email?: string;
+      usecase?: string;
+      aiStatus?: string;
+      aiDetails?: string;
+    };
 
     if (!body.name || !body.email || !body.usecase) {
       return new Response(JSON.stringify({ error: "Name, email, and use case are required" }), {
@@ -15,6 +23,10 @@ export const onRequestPost = async (context: any) => {
     }
 
     const { name, email, usecase } = body;
+
+    // Optional: whether they already use AI for this, plus details if they do
+    const aiStatus = AI_STATUS_OPTIONS.includes(body.aiStatus ?? "") ? body.aiStatus! : "";
+    const aiDetails = aiStatus === "Yes, already in use" ? (body.aiDetails ?? "").slice(0, 1000) : "";
 
     const webhookUrl = context.env.GOOGLE_SHEET_WEBHOOK_URL;
     if (!webhookUrl) {
@@ -29,7 +41,7 @@ export const onRequestPost = async (context: any) => {
     const sheetResponse = await fetch(webhookUrl, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ name, email, usecase }),
+      body: JSON.stringify({ name, email, usecase, aiStatus, aiDetails }),
     });
 
     if (!sheetResponse.ok) {

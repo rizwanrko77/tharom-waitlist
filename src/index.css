@@ -116,6 +116,56 @@ a:hover {
   color: var(--text-secondary);
 }
 
+.choice-fieldset {
+  border: none;
+  text-align: left;
+}
+
+.choice-fieldset legend {
+  font-size: 0.95rem;
+  color: var(--text-primary);
+  margin-bottom: 0.6rem;
+}
+
+.choice-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.choice-pill input {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.choice-pill span {
+  display: inline-block;
+  padding: 0.5rem 0.9rem;
+  border: 1px solid var(--glass-border);
+  border-radius: 999px;
+  background: rgba(0, 0, 0, 0.03);
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.choice-pill span:hover {
+  border-color: var(--accent-color);
+}
+
+.choice-pill input:checked + span {
+  border-color: var(--accent-color);
+  background: rgba(243, 128, 32, 0.1);
+  color: var(--accent-color);
+  font-weight: 600;
+}
+
+.choice-pill input:focus-visible + span {
+  box-shadow: 0 0 0 3px var(--accent-glow);
+}
+
 /* Utils */
 .text-mono {
   font-family: var(--font-mono);

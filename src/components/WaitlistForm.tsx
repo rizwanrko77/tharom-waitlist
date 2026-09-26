@@ -4,11 +4,16 @@ import { Loader2, CheckCircle, AlertTriangle } from 'lucide-react';
 
 const WAITLIST_STORAGE_KEY = 'tharom_waitlist_joined';
 
+const AI_STATUS_OPTIONS = ['Not yet', 'Exploring options', 'Yes, already in use'] as const;
+const AI_IN_USE = 'Yes, already in use';
+
 export default function WaitlistForm() {
   const [step, setStep] = useState<'intro' | 'form'>('intro');
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [usecase, setUsecase] = useState('');
+  const [aiStatus, setAiStatus] = useState('');
+  const [aiDetails, setAiDetails] = useState('');
   const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error' | 'already'>('idle');
   const [errorMessage, setErrorMessage] = useState('');
 
@@ -30,7 +35,13 @@ export default function WaitlistForm() {
       const response = await fetch('/api/waitlist', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ name, email, usecase }),
+        body: JSON.stringify({
+          name,
+          email,
+          usecase,
+          aiStatus,
+          aiDetails: aiStatus === AI_IN_USE ? aiDetails : '',
+        }),
       });
 
       const data = await response.json();
@@ -145,6 +156,35 @@ export default function WaitlistForm() {
               rows={3}
               style={{ resize: 'vertical', fontFamily: 'inherit' }}
             />
+
+            <fieldset className="choice-fieldset" disabled={status === 'loading'}>
+              <legend>Are you using AI for this today?</legend>
+              <div className="choice-group">
+                {AI_STATUS_OPTIONS.map((option) => (
+                  <label key={option} className="choice-pill">
+                    <input
+                      type="radio"
+                      name="aiStatus"
+                      value={option}
+                      checked={aiStatus === option}
+                      onChange={() => setAiStatus(option)}
+                    />
+                    <span>{option}</span>
+                  </label>
+                ))}
+              </div>
+            </fieldset>
+
+            {aiStatus === AI_IN_USE && (
+              <input
+                type="text"
+                className="input-field"
+                placeholder="What are you using, and how is it working for you?"
+                value={aiDetails}
+                onChange={(e) => setAiDetails(e.target.value)}
+                disabled={status === 'loading'}
+              />
+            )}
 
             {status === 'error' && (
               <div style={{ color: '#ff4444', display: 'flex', alignItems: 'center', gap: '0.5rem', fontSize: '0.9rem' }}>
