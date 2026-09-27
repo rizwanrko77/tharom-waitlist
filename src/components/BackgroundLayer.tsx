@@ -60,7 +60,7 @@ export default function BackgroundLayer() {
         />
       </motion.div>
 
-      {/* Traveling Data Pulses (Organic) */}
+      {/* AI network with experts in the loop */}
       <ParticleNetwork />
 
       {/* Texture Grain Overlay */}
