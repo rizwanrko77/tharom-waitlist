@@ -110,7 +110,7 @@ export default function WaitlistForm() {
             />
             <textarea
               className="input-field"
-              placeholder="Tell us about your business and what you'd like to build with AI"
+              placeholder="Tell us about your business use case and what you'd like to build with AI"
               value={usecase}
               onChange={(e) => setUsecase(e.target.value)}
               required
@@ -138,13 +138,14 @@ export default function WaitlistForm() {
             </fieldset>
 
             {aiStatus === AI_IN_USE && (
-              <input
-                type="text"
+              <textarea
                 className="input-field"
                 placeholder="What are you using, and how is it working for you?"
                 value={aiDetails}
                 onChange={(e) => setAiDetails(e.target.value)}
                 disabled={status === 'loading'}
+                rows={3}
+                style={{ resize: 'vertical', fontFamily: 'inherit' }}
               />
             )}
 

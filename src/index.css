@@ -231,3 +231,10 @@ a:hover {
   animation: slowDrift2 25s ease-in-out infinite;
   transform-origin: center;
 }
+
+/* Use-case invite card: full-width button once it wraps under the text */
+@media (max-width: 640px) {
+  .invite-cta {
+    width: 100%;
+  }
+}
